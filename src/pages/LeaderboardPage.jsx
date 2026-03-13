@@ -173,7 +173,7 @@ export default function LeaderboardPage() {
                       fontSize: "12px",
                       fontFamily: "DM Sans, sans-serif"
                     }}>
-                      🎯 {entry.totalCorrect * 10} prediction coins
+                      🎯 {entry.totalCorrect * 20} prediction coins
                     </span>
                     {entry.challengesWon > 0 && (
                       <span style={{
