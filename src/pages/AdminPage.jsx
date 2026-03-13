@@ -302,7 +302,7 @@ function PlayersTab({ headers }) {
   const handleDelete = async (playerId) => {
     if (!window.confirm(`Delete player ${playerId}? This cannot be undone!`)) return;
     try {
-      await api.delete(`/admin/players/${playerId}`, { headers });
+      await api.delete(`/admin/player/${playerId}`, { headers });
       toast.success("Player deleted!");
       fetchPlayers();
     } catch {

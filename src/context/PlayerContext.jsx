@@ -22,7 +22,7 @@ export function PlayerProvider({ children }) {
     if (!stored) return;
     const storedPlayer = JSON.parse(stored);
     try {
-      const res = await api.get(`/players/${storedPlayer.playerId}`);
+      const res = await api.get(`/player/${storedPlayer.playerId}`);
       const updated = res.data;
       setPlayer(updated);
       localStorage.setItem("player", JSON.stringify(updated));
