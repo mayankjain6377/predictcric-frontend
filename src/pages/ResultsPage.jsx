@@ -13,30 +13,27 @@ export default function ResultsPage() {
   const [challenges, setChallenges] = useState([]);
   const [loading, setLoading] = useState(true);
 
+   const fetchChallenges = async () => {
+    try {
+      const encoded = encodeURIComponent(player.playerId);
+      const res = await api.get(`/challenges/player/${encoded}`);
+      setChallenges(Array.isArray(res.data) ? res.data : []);
+    } catch {
+      navigate("/");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     if (!player?.playerId) {
       navigate("/");
       return;
     }
-    useEffect(() => {
-  fetchChallenges();
-  refreshPlayer(); // ✅ update coins when results page opens
-}, []);
-
-    const fetchChallenges = async () => {
-      try {
-        const encoded = encodeURIComponent(player.playerId);
-        const res = await api.get(`/challenges/player/${encoded}`);
-        setChallenges(Array.isArray(res.data) ? res.data : []);
-      } catch {
-        navigate("/");
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchChallenges();
-  }, [navigate, player]);
+    refreshPlayer();
+  }, []);
+
 
   const statusStyle = {
     PENDING: "text-yellow-400 bg-yellow-400/10 border-yellow-400/30",
